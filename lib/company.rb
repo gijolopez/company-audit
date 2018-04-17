@@ -65,6 +65,15 @@ class Company
   end
 
   def timesheet_csv_parse(filepath)
-    CSV.foreach(filepath) {|row| @timesheets << Timesheet.new(row[0], row[1], row[2], row[3])}
+    CSV.foreach(filepath) {|row| @timesheets << Timesheet.new(row[0], row[1], row[2])}
   end
+
+  def find_employee_by_id(id)
+    @employees.find {|employee| employee.employee_id == id}
+  end
+
+  def find_project_by_id(id)
+    @projects.find {|project| project.project_id == id}
+  end
+
 end

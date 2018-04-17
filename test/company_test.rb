@@ -55,4 +55,34 @@ class CompanyTest < Minitest::Test
     result = company.load_projects('./data/bad_timesheets.csv')
     assert_instance_of Hash, result
   end
+
+  def test_it_can_find_employee_by_id
+    company = Company.new
+    company.load_employees('./data/employees.csv')
+    result = company.find_employee_by_id(2)
+    assert_instance_of Employee, result
+    assert_equal 'John Smith', result.name
+  end
+
+  def test_it_can_find_nil_by_id
+    company = Company.new
+    company.load_employees('./data/employees.csv')
+    result = company.find_employee_by_id(5)
+    assert_nil result
+  end
+
+  def test_it_can_find_project_by_id
+    company = Company.new
+    company.load_projects('./data/projects.csv')
+    result = company.find_project_by_id(2)
+    assert_instance_of Project, result
+    assert_equal 'More Widgets', result.name
+  end
+
+  def test_project_find_nil_by_id
+    company = Company.new
+    company.load_projects('./data/projects.csv')
+    result = company.find_project_by_id(5)
+    assert_nil result
+  end
 end
