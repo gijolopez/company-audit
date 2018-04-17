@@ -21,4 +21,10 @@ class EmployeeTest < Minitest::Test
     assert_equal "Sally Jackson", @employee.name
     assert_equal "Engineer", @employee.role
   end
+
+  def test_output_of_classes_are_correct
+    assert_instance_of Integer, @employee.employee_id
+    assert_instance_of Date, @employee.start_date
+    assert_instance_of Date, @employee.end_date
+  end
 end
