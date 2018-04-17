@@ -32,4 +32,22 @@ class Company
       @employees << Employee.new(row[0], row[1], row[2], row[3], row[4])
     end
   end
+
+  def load_projects(filepath)
+    result = check_project_row_length(filepath)
+    return { success: false, error: 'bad data' } if result.include?(false)
+    result = { success: true, error: nil }
+    project_csv_parse(filepath)
+    result
+  end
+
+  def check_project_row_length(filepath)
+    rows = []
+    CSV.foreach(filepath) {|row| rows << row.length}
+    rows.map {|num| num == 4}
+  end
+
+  def project_csv_parse(filepath)
+    CSV.foreach(filepath) {|row| @projects << Project.new(row[0], row[1], row[2], row[3])}
+  end
 end
