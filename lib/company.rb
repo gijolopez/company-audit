@@ -50,4 +50,20 @@ class Company
   def project_csv_parse(filepath)
     CSV.foreach(filepath) {|row| @projects << Project.new(row[0], row[1], row[2], row[3])}
   end
+
+  def load_timesheets(filepath)
+    result = check_timesheet_row_length(filepath)
+    return { success: false, error: 'bad data' } if result.include?(false)
+    { success: true, error: nil }
+  end
+
+  def check_timesheet_row_length(filepath)
+    rows = []
+    CSV.foreach(filepath) {|row| rows << row.length}
+    rows.map {|num| num == 4}
+  end
+
+  def timesheet_csv_parse(filepath)
+    CSV.foreach(filepath) {|row| @timesheets << Timesheet.new(row[0], row[1], row[2], row[3])}
+  end
 end
