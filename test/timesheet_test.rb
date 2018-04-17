@@ -7,6 +7,7 @@ class TimesheetTest < Minitest::Test
     project_id = '7'
     date = '2015-01-01'
     minutes = '120'
+    
     @timesheet = Timesheet.new(employee_id, project_id, date, minutes)
   end
 

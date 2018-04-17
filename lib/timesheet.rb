@@ -7,10 +7,10 @@ class Timesheet
               :minutes
 
   def initialize(employee_id, project_id, start_date, minutes)
-    @employee_id = employee_id.to_i
-    @project_id = project_id.to_i
-    @start_date = string_date_input(start_date)
-    @minutes = minutes.to_i
+    @employee_id   = employee_id.to_i
+    @project_id    = project_id.to_i
+    @start_date    = string_date_input(start_date)
+    @minutes       = minutes.to_i
   end
 
   def string_date_input(date_string)

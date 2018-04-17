@@ -19,5 +19,4 @@ class Employee
   def string_to_date(date_string)
     DateHandler.string_to_date(date_string)
   end
-
 end

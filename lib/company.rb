@@ -9,9 +9,9 @@ class Company
               :timesheets
 
   def initialize
-    @employees = []
-    @projects = []
-    @timesheets = []
+    @employees   = []
+    @projects    = []
+    @timesheets  = []
   end
 
   def load_employees(filepath)
@@ -29,9 +29,7 @@ class Company
   end
 
   def employee_csv_parse(filepath)
-    CSV.foreach(filepath) do |row|
-      @employees << Employee.new(row[0], row[1], row[2], row[3], row[4])
-    end
+    CSV.foreach(filepath) {|row| @employees << Employee.new(row[0], row[1], row[2], row[3], row[4])}
   end
 
   def load_projects(filepath)
@@ -75,5 +73,4 @@ class Company
   def find_project_by_id(id)
     @projects.find {|project| project.project_id == id}
   end
-
 end
